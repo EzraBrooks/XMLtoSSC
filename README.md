@@ -15,6 +15,8 @@ Sample XML command file:
     <movement servo="all" position="1500"/>
     <!-- Sets servo 0 to position 0 -->
     <movement servo="0" position="0"/>
+    <!-- Waits 1000ms -->
+    <wait milliseconds="1000"/>
     <!-- Sets servo 1 to position 0 over 1000ms -->
     <movement servo="1" position="0" time="1000"/>
 
