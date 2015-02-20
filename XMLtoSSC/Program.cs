@@ -18,14 +18,13 @@ namespace XMLtoSSC
                 usage();
                 return;
             }
-            ServoController controller;
+            //dummy controller assignment so compiler doesn't complain
+            ServoController controller = null;
             XmlReader commandReader = XmlReader.Create("commands.xml");
             commandReader.Read();
             if (commandReader.GetAttribute("port") == null)
             {
                 Console.WriteLine("Please specify a port in your top-level servocontrol element.");
-                //dummy controller assignment so compiler doesn't complain
-                controller = null;
                 Environment.Exit(0);
             }
             else if (SerialPort.GetPortNames().Contains(commandReader.GetAttribute("port")))
@@ -35,8 +34,6 @@ namespace XMLtoSSC
             else
             {
                 Console.WriteLine("The serial port you've specified is not connected.");
-                //dummy controller assignment so compiler doesn't complain
-                controller = null;
                 Environment.Exit(0);
             }
             while (commandReader.Read())
