@@ -7,10 +7,11 @@
     <ProjectGuid>{437EBE1E-3A08-45F2-B84A-624CEEEA28C3}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>XMLtoSSC</RootNamespace>
+    <RootNamespace>EzraBrooks.XMLtoSSC</RootNamespace>
     <AssemblyName>XMLtoSSC</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -30,6 +31,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>EzraBrooks.XMLtoSSC.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="SSCSharp">

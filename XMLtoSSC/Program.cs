@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.IO.Ports;
 using EzraBrooks.SSCSharp;
 
-namespace XMLtoSSC
+namespace EzraBrooks.XMLtoSSC
 {
     class Program
     {
