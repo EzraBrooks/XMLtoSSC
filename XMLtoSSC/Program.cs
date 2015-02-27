@@ -5,7 +5,7 @@ using System.Text;
 using System.Xml;
 using System.Threading.Tasks;
 using System.IO.Ports;
-using SSCSharp;
+using EzraBrooks.SSCSharp;
 
 namespace XMLtoSSC
 {
