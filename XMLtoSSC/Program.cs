@@ -18,61 +18,20 @@ namespace EzraBrooks.XMLtoSSC
                 usage();
                 return;
             }
-            //dummy controller assignment so compiler doesn't complain
-            ServoController controller = null;
-            XmlReader commandReader = XmlReader.Create("commands.xml");
-            commandReader.Read();
-            if (commandReader.GetAttribute("port") == null)
+            try
             {
-                Console.WriteLine("Please specify a port in your top-level servocontrol element.");
-                Environment.Exit(0);
+                CommandReader mainReader = new CommandReader(args[0]);
+                mainReader.run();
             }
-            else if (SerialPort.GetPortNames().Contains(commandReader.GetAttribute("port")))
+            catch (CommandReaderException e)
             {
-                controller = new ServoController(commandReader.GetAttribute("port"));
-            }
-            else
-            {
-                Console.WriteLine("The serial port you've specified is not connected.");
-                Environment.Exit(0);
-            }
-            while (commandReader.Read())
-            {
-                if (commandReader.NodeType == XmlNodeType.Element)
+                string source = e.GetType().Name;
+                if (e.InnerException != null)
                 {
-                    if(commandReader.Name == "movement"){
-                        if (commandReader.HasAttributes)
-                        {
-                            int position = Convert.ToInt32(commandReader.GetAttribute("position"));
-                            int time = 0;
-                            if (commandReader.GetAttribute("time") != null)
-                            {
-                                time = Convert.ToInt32(commandReader.GetAttribute("time"));
-                            }
-                            if (commandReader.GetAttribute("servo") == "all")
-                            {
-                                controller.setServoPositions(new int[] { 0, 1, 2, 3, 4, 5 }, position);
-                            }
-                            else
-                            {
-                                int servoNumber = Convert.ToInt32(commandReader.GetAttribute("servo"));
-                                controller.setServoPosition(servoNumber, position, time);
-                            }
-                        }
-                    }
-                    else if (commandReader.Name == "wait")
-                    {
-                        if (commandReader.HasAttributes)
-                        {
-                            int milliseconds = Convert.ToInt32(commandReader.GetAttribute("milliseconds"));
-                            System.Threading.Thread.Sleep(milliseconds);
-                        }
-                    }
-                    else if (commandReader.Name == "print")
-                    {
-                        Console.WriteLine(commandReader.ReadString());
-                    }
+                    source += " from " + e.InnerException.GetType().Name;
                 }
+                Console.WriteLine(e.Message + " (" + source + ")");
+                Environment.Exit(255);
             }
             Console.WriteLine();
         }

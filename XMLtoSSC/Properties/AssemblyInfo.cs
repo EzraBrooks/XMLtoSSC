@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("XMLtoSSC")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A console application for interpreting XML into SSC-32 commands via SSCSharp")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Ezra Brooks")]
 [assembly: AssemblyProduct("XMLtoSSC")]
