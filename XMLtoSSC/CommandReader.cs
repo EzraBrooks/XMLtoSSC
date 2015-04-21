@@ -15,6 +15,7 @@ namespace EzraBrooks.XMLtoSSC
     {
         private XmlReader commandFile;
         private ServoController controller;
+        private int[] allServos = new int[] { 0, 1, 2, 3, 4, 5 };
         /// <summary>
         /// Constructor for CommandReader object
         /// </summary>
@@ -59,12 +60,16 @@ namespace EzraBrooks.XMLtoSSC
                             }
                             if (commandFile.GetAttribute("servo") == "all")
                             {
-                                controller.setServoPositions(new int[] { 0, 1, 2, 3, 4, 5 }, position);
+                                foreach (int servo in allServos)
+                                {
+                                    controller.Servos[servo].Position = position;
+                                }
                             }
                             else
                             {
                                 int servoNumber = Convert.ToInt32(commandFile.GetAttribute("servo"));
-                                controller.setServoPosition(servoNumber, position, time);
+                                controller.Servos[servoNumber].Time = time;
+                                controller.Servos[servoNumber].Position = position;
                             }
                         }
                     }
